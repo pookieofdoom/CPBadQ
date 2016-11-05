@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "135932377915",
+    "firebase_url": "https://cpbadq.firebaseio.com",
+    "project_id": "cpbadq",
+    "storage_bucket": "cpbadq.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:135932377915:android:0a337d1e59f0bc88",
+        "android_client_info": {
+          "package_name": "adinh03.calpoly.edu.cpbadq"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "135932377915-oi510qjsk069o16so4uvdgjujrmfbu3v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDbGKDwxekr7r_9wOG-E_SbOWG-5TiwN_0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
