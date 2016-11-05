@@ -1,35 +1,16 @@
 package adinh03.calpoly.edu.cpbadq;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 public class MainActivity extends AppCompatActivity {
-
-
-
-   /* life cycles for activitis
-
-
-      onCreate
-
-      onStart - visible (onRestart starts here)
-
-      onResume -foreground
-
-      onPause - background
-
-      onStop - not visible
-
-      on Destroy
-
-
-
-    */
 
    Button court1Button;
    Button court2Button;
@@ -37,11 +18,22 @@ public class MainActivity extends AppCompatActivity {
    TextView count1;
    TextView count2;
    TextView count3;
+   private FirebaseAuth mFirebaseAuth;
+   private FirebaseUser mFirebaseUser;
 
    @Override
    protected void onCreate(Bundle savedInstanceState) {
       super.onCreate(savedInstanceState);
       setContentView(R.layout.activity_main);
+
+      // Initialize Firebase Auth
+      mFirebaseAuth = FirebaseAuth.getInstance();
+      mFirebaseUser = mFirebaseAuth.getCurrentUser();
+
+      if (mFirebaseUser == null) {
+         // Not logged in, launch the Log In activity
+         LoadLogInView();
+      }
 
       court1Button = (Button) findViewById(R.id.court1Button);
       court2Button = (Button) findViewById(R.id.court2Button);
@@ -77,5 +69,12 @@ public class MainActivity extends AppCompatActivity {
       });
 
 
+   }
+
+   private void LoadLogInView() {
+      Intent intent = new Intent(this, LogInActivity.class);
+      intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+      intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+      startActivity(intent);
    }
 }
