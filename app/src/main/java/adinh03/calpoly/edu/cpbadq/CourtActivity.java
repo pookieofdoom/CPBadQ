@@ -15,7 +15,7 @@ public class CourtActivity extends AppCompatActivity {
       // from anthony
       // from Patrick
       super.onCreate(savedInstanceState);
-
+      //fk git
       setContentView(R.layout.activity_court);
    }
 }
