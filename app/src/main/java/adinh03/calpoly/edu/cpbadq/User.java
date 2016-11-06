@@ -9,14 +9,13 @@ public class User {
     private String mFirstName;
     private String mLastName;
     private int mSkillLevel;
-    private int mAdmin_Level;
+   //private int mAdmin_Level;
 
-    public User(String email, String firstName, String lastName, int skillLevel, int adminLevel) {
+   public User(String email, String firstName, String lastName, int skillLevel) {
         mEmail = email;
         mFirstName = firstName;
         mLastName = lastName;
         mSkillLevel = skillLevel;
-        mAdmin_Level = adminLevel;
 
     }
 
@@ -40,8 +39,5 @@ public class User {
        mSkillLevel = skillLevel;
     }
 
-    public int getAdminLevel() {
-        return mAdmin_Level;
-    }
 
 }

@@ -39,7 +39,7 @@ public class SignUpActivity extends AppCompatActivity {
       // Initialize FirebaseAuth
       mFirebaseAuth = FirebaseAuth.getInstance();
 
-      mSignUpButton = (Button) findViewById(R.id.signupButton);
+      mSignUpButton = (Button) findViewById(R.id.signUpButton);
 
       mEmail = (EditText) findViewById(R.id.email);
       mPassword = (EditText) findViewById(R.id.password);
@@ -91,7 +91,7 @@ public class SignUpActivity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                            if (task.isSuccessful()) {
                               mUser = new User(mEmail.getText().toString().trim(), mFirstName.getText().toString().trim(),
-                                    mLastName.getText().toString().trim(), mSkillLevel, )
+                                    mLastName.getText().toString().trim(), mSkillLevel);
                               Intent i = new Intent(SignUpActivity.this, LogInActivity.class);
                               startActivity(i);
                            } else {
