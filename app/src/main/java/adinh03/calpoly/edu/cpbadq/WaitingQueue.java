@@ -18,10 +18,6 @@ public class WaitingQueue {
       mQueue.add(user);
    }
 
-//   public User topQueue()
-//   {
-//      mQueue.
-//   }
 
 
 }

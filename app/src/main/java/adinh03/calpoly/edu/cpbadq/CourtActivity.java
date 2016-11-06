@@ -3,6 +3,9 @@ package adinh03.calpoly.edu.cpbadq;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.widget.TextView;
 
 /**
  * Created by Anthony on 11/5/16.
@@ -10,15 +13,24 @@ import android.support.v7.app.AppCompatActivity;
 
 public class CourtActivity extends AppCompatActivity
 {
-
-   private int numWaiting = 0;
-
+   private TextView mOnCourt;
+   private RecyclerView mRecylerView;
+   private MyAdapter adapter;
+   private WaitingQueue mQueue;
 
    @Override
    protected void onCreate(@Nullable Bundle savedInstanceState)
    {
       super.onCreate(savedInstanceState);
       setContentView(R.layout.activity_court);
+      mOnCourt = (TextView) findViewById(R.id.onCourtList);
+      mRecylerView = (RecyclerView) findViewById(R.id.waitingList);
+      mRecylerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+      adapter = new MyAdapter(mQueue);
+
+
+
+
    }
 
 
