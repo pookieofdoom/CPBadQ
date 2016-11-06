@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
    TextView count3;
    private FirebaseAuth mFirebaseAuth;
    private FirebaseUser mFirebaseUser;
+   private User mUser;
 
    @Override
    protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
          // Not logged in, launch the Log In activity
          LoadLogInView();
       }
+
 
       court1Button = (Button) findViewById(R.id.court1Button);
       court2Button = (Button) findViewById(R.id.court2Button);
@@ -56,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
          @Override
          public void onClick(View view) {
             Intent i = new Intent(MainActivity.this, CourtActivity.class);
+            i.putExtra("CurrentUser", mFirebaseUser.getEmail());
             startActivity(i);
          }
       });

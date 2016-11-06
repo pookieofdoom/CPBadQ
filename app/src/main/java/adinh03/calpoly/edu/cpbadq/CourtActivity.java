@@ -6,6 +6,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -23,7 +24,7 @@ public class CourtActivity extends AppCompatActivity
    private FloatingActionButton mFAB;
 
    @Override
-   protected void onCreate(@Nullable Bundle savedInstanceState)
+   protected void onCreate(Bundle savedInstanceState)
    {
       super.onCreate(savedInstanceState);
       setContentView(R.layout.activity_court);
@@ -34,7 +35,12 @@ public class CourtActivity extends AppCompatActivity
       mRecylerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
       adapter = new MyAdapter(mQueue);
 
-
+      mFAB.setOnClickListener(new View.OnClickListener() {
+         @Override
+         public void onClick(View view) {
+            mQueue.AddToQ(new User());
+         }
+      });
 
    }
 

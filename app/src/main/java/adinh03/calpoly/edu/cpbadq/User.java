@@ -5,50 +5,43 @@ package adinh03.calpoly.edu.cpbadq;
  */
 
 public class User {
-    private String email;
-    private String nickname;
-    private int skill_level;
-    private int admin_level;
-    private String partner;
+    private String mEmail;
+    private String mFirstName;
+    private String mLastName;
+    private int mSkillLevel;
+    private int mAdmin_Level;
 
-    public User(String email, String nickname, int skill_level, int admin_level, String partner) {
-        this.email = email;
-        this.nickname = nickname;
-        this.skill_level = skill_level;
-        this.admin_level = admin_level;
-        this.partner = partner;
+    public User(String email, String firstName, String lastName, int skillLevel, int adminLevel) {
+        mEmail = email;
+        mFirstName = firstName;
+        mLastName = lastName;
+        mSkillLevel = skillLevel;
+        mAdmin_Level = adminLevel;
 
     }
 
     public String getEmail() {
-        return email;
+        return mEmail;
     }
 
-    public String getNickname() {
-        return nickname;
+    public String getFirstName() {
+        return mFirstName;
     }
 
-    public void setNickname(String nickname) {
-        this.nickname = nickname;
+    public String getLastName() { return mLastName;}
+
+    public String getFullName() {return mFirstName + mLastName;}
+
+    public int getSkillLevel() {
+        return mSkillLevel;
     }
 
-    public int getSkill_level() {
-        return skill_level;
+    public void setSkillLevel(int skillLevel) {
+       mSkillLevel = skillLevel;
     }
 
-    public void setSkill_level(int skill_level) {
-        this.skill_level = skill_level;
+    public int getAdminLevel() {
+        return mAdmin_Level;
     }
 
-    public int getAdmin_level() {
-        return admin_level;
-    }
-
-    public String getPartner() {
-        return partner;
-    }
-
-    public void setPartner(String partner) {
-        this.partner = partner;
-    }
 }
