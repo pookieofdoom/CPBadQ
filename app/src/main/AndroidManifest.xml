@@ -16,10 +16,11 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".CourtActivity">
+        <activity android:name=".CourtActivity" />
+        <activity android:name=".SignUpActivity" />
+        <activity android:name=".LogInActivity" />
 
 
-    </activity>
     </application>
 
 </manifest>
