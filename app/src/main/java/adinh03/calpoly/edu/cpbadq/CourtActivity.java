@@ -8,14 +8,20 @@ import android.support.v7.app.AppCompatActivity;
  * Created by Anthony on 11/5/16.
  */
 
-public class CourtActivity extends AppCompatActivity {
+public class CourtActivity extends AppCompatActivity
+{
+
+   private int numWaiting = 0;
+
 
    @Override
-   protected void onCreate(@Nullable Bundle savedInstanceState) {
-      // from anthony
-      // from Patrick
+   protected void onCreate(@Nullable Bundle savedInstanceState)
+   {
       super.onCreate(savedInstanceState);
-      //fk git
       setContentView(R.layout.activity_court);
    }
+
+
+
+
 }
