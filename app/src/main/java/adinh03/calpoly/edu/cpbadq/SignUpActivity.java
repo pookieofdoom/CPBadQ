@@ -56,8 +56,17 @@ public class SignUpActivity extends AppCompatActivity {
                             .addOnCompleteListener(SignUpActivity.this, new OnCompleteListener<AuthResult>() {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
-                                    Intent i = new Intent(SignUpActivity.this, LogInActivity.class);
-                                    startActivity(i);
+                                   if (task.isSuccessful()) {
+                                      Intent i = new Intent(SignUpActivity.this, LogInActivity.class);
+                                      startActivity(i);
+                                   } else {
+                                      android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(SignUpActivity.this);
+                                      builder.setMessage(task.getException().getMessage())
+                                            .setTitle("Login Failed")
+                                            .setPositiveButton(android.R.string.ok, null);
+                                      android.app.AlertDialog dialog = builder.create();
+                                      dialog.show();
+                                   }
                                 }
                             });
                 }
