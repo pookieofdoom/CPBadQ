@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,6 +18,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 
 public class SignUpActivity extends AppCompatActivity
@@ -40,7 +42,7 @@ public class SignUpActivity extends AppCompatActivity
 
       // Initialize FirebaseAuth
       mFirebaseAuth = FirebaseAuth.getInstance();
-
+      mRef = FirebaseDatabase.getInstance().getReference("users");
       mSignUpButton = (Button) findViewById(R.id.signUpButton);
 
       mEmail = (EditText) findViewById(R.id.email);
@@ -60,7 +62,8 @@ public class SignUpActivity extends AppCompatActivity
             if (i == R.id.beginner)
             {
                mSkillLevel = 1;
-            } else if (i == R.id.advance)
+            }
+            else if (i == R.id.advance)
             {
                mSkillLevel = 2;
             }
@@ -88,7 +91,8 @@ public class SignUpActivity extends AppCompatActivity
                      .setPositiveButton("Okay", null);
                AlertDialog dialog = builder.create();
                dialog.show();
-            } else
+            }
+            else
             {
                mFirebaseAuth.createUserWithEmailAndPassword(getEmail, getPassword)
                      .addOnCompleteListener(SignUpActivity.this, new
@@ -99,12 +103,22 @@ public class SignUpActivity extends AppCompatActivity
                               {
                                  if (task.isSuccessful())
                                  {
+                                    String userId = task.getResult().getUser().getUid();
                                     mUser = new User(mEmail.getText().toString().trim(), mFirstName
                                           .getText().toString().trim(),
                                           mLastName.getText().toString().trim(), mSkillLevel);
+
+                                    Log.d("DEUBG", userId);
+                                    mRef.child(userId).child("First " +
+                                          "Name").setValue(mFirstName.getText().toString().trim());
+                                    mRef.child(userId).child("Last " +
+                                          "Name").setValue(mLastName.getText().toString().trim());
+                                    mRef.child(userId).child("Skill " +
+                                          "Level").setValue(mSkillLevel);
                                     Intent i = new Intent(SignUpActivity.this, LogInActivity.class);
                                     startActivity(i);
-                                 } else
+                                 }
+                                 else
                                  {
                                     android.app.AlertDialog.Builder builder = new android.app
                                           .AlertDialog.Builder(SignUpActivity.this);
