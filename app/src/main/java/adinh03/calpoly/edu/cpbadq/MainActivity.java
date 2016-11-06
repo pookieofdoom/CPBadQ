@@ -10,7 +10,8 @@ import android.widget.TextView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity
+{
 
    Button court1Button;
    Button court2Button;
@@ -23,7 +24,8 @@ public class MainActivity extends AppCompatActivity {
    private User mUser;
 
    @Override
-   protected void onCreate(Bundle savedInstanceState) {
+   protected void onCreate(Bundle savedInstanceState)
+   {
       super.onCreate(savedInstanceState);
       setContentView(R.layout.activity_main);
 
@@ -31,7 +33,8 @@ public class MainActivity extends AppCompatActivity {
       mFirebaseAuth = FirebaseAuth.getInstance();
       mFirebaseUser = mFirebaseAuth.getCurrentUser();
 
-      if (mFirebaseUser == null) {
+      if (mFirebaseUser == null)
+      {
          // Not logged in, launch the Log In activity
          LoadLogInView();
       }
@@ -46,26 +49,32 @@ public class MainActivity extends AppCompatActivity {
       count3 = (TextView) findViewById(R.id.count3);
 
 
-      court1Button.setOnClickListener(new View.OnClickListener() {
+      court1Button.setOnClickListener(new View.OnClickListener()
+      {
          @Override
-         public void onClick(View view) {
+         public void onClick(View view)
+         {
             Intent i = new Intent(MainActivity.this, CourtActivity.class);
             startActivity(i);
          }
       });
 
-      court2Button.setOnClickListener(new View.OnClickListener() {
+      court2Button.setOnClickListener(new View.OnClickListener()
+      {
          @Override
-         public void onClick(View view) {
+         public void onClick(View view)
+         {
             Intent i = new Intent(MainActivity.this, CourtActivity.class);
             i.putExtra("CurrentUser", mFirebaseUser.getEmail());
             startActivity(i);
          }
       });
 
-      court3Button.setOnClickListener(new View.OnClickListener() {
+      court3Button.setOnClickListener(new View.OnClickListener()
+      {
          @Override
-         public void onClick(View view) {
+         public void onClick(View view)
+         {
             Intent i = new Intent(MainActivity.this, CourtActivity.class);
             startActivity(i);
          }
@@ -74,7 +83,8 @@ public class MainActivity extends AppCompatActivity {
 
    }
 
-   private void LoadLogInView() {
+   private void LoadLogInView()
+   {
       Intent intent = new Intent(this, LogInActivity.class);
       intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
       intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);

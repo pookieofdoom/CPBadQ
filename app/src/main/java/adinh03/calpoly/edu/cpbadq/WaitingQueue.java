@@ -7,17 +7,19 @@ import java.util.Queue;
  * Created by Anthony on 11/5/16.
  */
 
-public class WaitingQueue {
+public class WaitingQueue
+{
    private Queue<User> mQueue;
 
-   public WaitingQueue() {
+   public WaitingQueue()
+   {
       mQueue = new ArrayDeque<>();
    }
 
-   public void AddToQ(User user) {
+   public void AddToQ(User user)
+   {
       mQueue.add(user);
    }
-
 
 
 }

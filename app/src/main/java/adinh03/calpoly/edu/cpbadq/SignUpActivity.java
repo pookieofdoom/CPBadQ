@@ -19,7 +19,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 
 
-public class SignUpActivity extends AppCompatActivity {
+public class SignUpActivity extends AppCompatActivity
+{
    private Button mSignUpButton;
    private EditText mEmail;
    private EditText mPassword, mConfirmPass, mFirstName, mLastName;
@@ -32,7 +33,8 @@ public class SignUpActivity extends AppCompatActivity {
    private FirebaseAuth mFirebaseAuth;
 
    @Override
-   protected void onCreate(@Nullable Bundle savedInstanceState) {
+   protected void onCreate(@Nullable Bundle savedInstanceState)
+   {
       super.onCreate(savedInstanceState);
       setContentView(R.layout.activity_sign_up);
 
@@ -50,14 +52,15 @@ public class SignUpActivity extends AppCompatActivity {
       mBeginner = (RadioButton) findViewById(R.id.beginner);
       mAdvance = (RadioButton) findViewById(R.id.advance);
 
-      mRadioGrup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+      mRadioGrup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
+      {
          @Override
-         public void onCheckedChanged(RadioGroup radioGroup, int i) {
+         public void onCheckedChanged(RadioGroup radioGroup, int i)
+         {
             if (i == R.id.beginner)
             {
                mSkillLevel = 1;
-            }
-            else if (i == R.id.advance)
+            } else if (i == R.id.advance)
             {
                mSkillLevel = 2;
             }
@@ -65,45 +68,54 @@ public class SignUpActivity extends AppCompatActivity {
       });
 
 
-      mSignUpButton.setOnClickListener(new View.OnClickListener() {
+      mSignUpButton.setOnClickListener(new View.OnClickListener()
+      {
          @Override
-         public void onClick(View view) {
+         public void onClick(View view)
+         {
             String getEmail = mEmail.getText().toString();
             String getPassword = mPassword.getText().toString();
             String getConfirm = mConfirmPass.getText().toString();
             getEmail = getEmail.trim();
             getPassword = getPassword.trim();
             getConfirm = getConfirm.trim();
-            if (getEmail.isEmpty() || getPassword.isEmpty() || getEmail == null || getPassword == null
-                  || !getConfirm.equals(getPassword)) {
+            if (getEmail.isEmpty() || getPassword.isEmpty() || getEmail == null
+                  || getPassword == null || !getConfirm.equals(getPassword))
+            {
                AlertDialog.Builder builder = new AlertDialog.Builder(SignUpActivity.this);
                builder.setMessage("Please enter a valid email and password")
                      .setTitle("Error")
                      .setPositiveButton("Okay", null);
                AlertDialog dialog = builder.create();
                dialog.show();
-            }
-            else
+            } else
             {
                mFirebaseAuth.createUserWithEmailAndPassword(getEmail, getPassword)
-                     .addOnCompleteListener(SignUpActivity.this, new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                           if (task.isSuccessful()) {
-                              mUser = new User(mEmail.getText().toString().trim(), mFirstName.getText().toString().trim(),
-                                    mLastName.getText().toString().trim(), mSkillLevel);
-                              Intent i = new Intent(SignUpActivity.this, LogInActivity.class);
-                              startActivity(i);
-                           } else {
-                              android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(SignUpActivity.this);
-                              builder.setMessage(task.getException().getMessage())
-                                    .setTitle("Login Failed")
-                                    .setPositiveButton(android.R.string.ok, null);
-                              android.app.AlertDialog dialog = builder.create();
-                              dialog.show();
-                           }
-                        }
-                     });
+                     .addOnCompleteListener(SignUpActivity.this, new
+                           OnCompleteListener<AuthResult>()
+                           {
+                              @Override
+                              public void onComplete(@NonNull Task<AuthResult> task)
+                              {
+                                 if (task.isSuccessful())
+                                 {
+                                    mUser = new User(mEmail.getText().toString().trim(), mFirstName
+                                          .getText().toString().trim(),
+                                          mLastName.getText().toString().trim(), mSkillLevel);
+                                    Intent i = new Intent(SignUpActivity.this, LogInActivity.class);
+                                    startActivity(i);
+                                 } else
+                                 {
+                                    android.app.AlertDialog.Builder builder = new android.app
+                                          .AlertDialog.Builder(SignUpActivity.this);
+                                    builder.setMessage(task.getException().getMessage())
+                                          .setTitle("Login Failed")
+                                          .setPositiveButton(android.R.string.ok, null);
+                                    android.app.AlertDialog dialog = builder.create();
+                                    dialog.show();
+                                 }
+                              }
+                           });
             }
 
          }

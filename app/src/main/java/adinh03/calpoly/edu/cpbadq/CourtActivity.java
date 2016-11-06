@@ -29,20 +29,20 @@ public class CourtActivity extends AppCompatActivity
       mOnCourt = (TextView) findViewById(R.id.onCourtList);
       mRecylerView = (RecyclerView) findViewById(R.id.waitingList);
       mFAB = (FloatingActionButton) findViewById(R.id.addButton);
-      mRecylerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+      mRecylerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL,
+            false));
       adapter = new MyAdapter(mQueue);
 
-      mFAB.setOnClickListener(new View.OnClickListener() {
+      mFAB.setOnClickListener(new View.OnClickListener()
+      {
          @Override
-         public void onClick(View view) {
+         public void onClick(View view)
+         {
             //mQueue.AddToQ(new User());
          }
       });
 
    }
-
-
-
 
 
 }

@@ -19,7 +19,8 @@ public class User {
 
     }
 
-    public String getEmail() {
+   public String getEmail()
+   {
         return mEmail;
     }
 
