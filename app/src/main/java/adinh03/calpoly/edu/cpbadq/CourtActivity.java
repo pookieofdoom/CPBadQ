@@ -2,9 +2,9 @@ package adinh03.calpoly.edu.cpbadq;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
@@ -15,23 +15,27 @@ import android.widget.TextView;
 public class CourtActivity extends AppCompatActivity
 {
    private TextView mOnCourt;
-   private RecyclerView mRecylerView;
-   private MyAdapter adapter;
-   private WaitingQueue mQueue;
+
+
    private FloatingActionButton mFAB;
+   private User mCurrentUser;
+   private Fragment mFrag;
 
    @Override
    protected void onCreate(Bundle savedInstanceState)
    {
       super.onCreate(savedInstanceState);
       setContentView(R.layout.activity_court);
-
+      mCurrentUser = (User) getIntent().getSerializableExtra("currentUser");
       mOnCourt = (TextView) findViewById(R.id.onCourtList);
-      mRecylerView = (RecyclerView) findViewById(R.id.waitingList);
+
       mFAB = (FloatingActionButton) findViewById(R.id.addButton);
-      mRecylerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL,
-            false));
-      adapter = new MyAdapter(mQueue);
+
+
+      FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+      mFrag = new WaitingListFragment();
+      ft.replace(R.id.joinFragment, mFrag);
+      ft.commit();
 
       mFAB.setOnClickListener(new View.OnClickListener()
       {
@@ -39,6 +43,14 @@ public class CourtActivity extends AppCompatActivity
          public void onClick(View view)
          {
             //mQueue.AddToQ(new User());
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("currentUser", mCurrentUser);
+            mFrag = new JoinQueueFragment();
+            mFrag.setArguments(bundle);
+            ft.replace(R.id.joinFragment, mFrag);
+            ft.commit();
+
          }
       });
 

@@ -9,6 +9,11 @@ import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity
 {
@@ -21,6 +26,7 @@ public class MainActivity extends AppCompatActivity
    TextView count3;
    private FirebaseAuth mFirebaseAuth;
    private FirebaseUser mFirebaseUser;
+   private DatabaseReference mRef;
    private User mUser;
 
    @Override
@@ -38,6 +44,32 @@ public class MainActivity extends AppCompatActivity
          // Not logged in, launch the Log In activity
          LoadLogInView();
       }
+      mRef = FirebaseDatabase.getInstance().getReference("users");
+      mRef.addListenerForSingleValueEvent(new ValueEventListener()
+      {
+         @Override
+         public void onDataChange(DataSnapshot dataSnapshot)
+         {
+            for (DataSnapshot postSnapShot : dataSnapshot.getChildren())
+            {
+               if (postSnapShot.getKey().equals(mFirebaseUser.getUid()))
+               {
+                  mUser = new User(postSnapShot.getKey(), mFirebaseUser.getEmail(), postSnapShot
+                        .child("First Name").getValue(String.class), postSnapShot.child("Last " +
+                        "Name").getValue(String.class), postSnapShot.child("Skill Level")
+                        .getValue(Integer.class));
+
+               }
+            }
+
+         }
+
+         @Override
+         public void onCancelled(DatabaseError databaseError)
+         {
+
+         }
+      });
 
 
       court1Button = (Button) findViewById(R.id.court1Button);
@@ -55,6 +87,7 @@ public class MainActivity extends AppCompatActivity
          public void onClick(View view)
          {
             Intent i = new Intent(MainActivity.this, CourtActivity.class);
+            i.putExtra("currentUser", mUser);
             startActivity(i);
          }
       });

@@ -6,7 +6,6 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -104,17 +103,16 @@ public class SignUpActivity extends AppCompatActivity
                                  if (task.isSuccessful())
                                  {
                                     String userId = task.getResult().getUser().getUid();
-                                    mUser = new User(mEmail.getText().toString().trim(), mFirstName
-                                          .getText().toString().trim(),
+                                    mUser = new User(userId, mEmail.getText().toString().trim(),
+                                          mFirstName.getText().toString().trim(),
                                           mLastName.getText().toString().trim(), mSkillLevel);
 
-                                    Log.d("DEUBG", userId);
-                                    mRef.child(userId).child("First " +
-                                          "Name").setValue(mFirstName.getText().toString().trim());
+                                    mRef.child(userId).child("First " + "Name").setValue(mUser
+                                          .getFirstName());
                                     mRef.child(userId).child("Last " +
-                                          "Name").setValue(mLastName.getText().toString().trim());
+                                          "Name").setValue(mUser.getLastName());
                                     mRef.child(userId).child("Skill " +
-                                          "Level").setValue(mSkillLevel);
+                                          "Level").setValue(mUser.getSkillLevel());
                                     Intent i = new Intent(SignUpActivity.this, LogInActivity.class);
                                     startActivity(i);
                                  }
