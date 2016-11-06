@@ -9,6 +9,20 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin">
 
+
+
+    <EditText
+        android:id="@+id/firstName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint=" First Name"/>
+
+    <EditText
+        android:id="@+id/lastName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint=" Last Name"/>
+
     <EditText
         android:id="@+id/email"
         android:layout_width="match_parent"
@@ -22,8 +36,46 @@
         android:hint="Password"
         android:inputType="textPassword"/>
 
+    <EditText
+        android:id="@+id/confirmPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Confirm Password"
+        android:inputType="textPassword"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="5dp"
+            android:paddingLeft="4dp"
+            android:paddingRight="11dp"
+            android:text="Skill Level"/>
+
+        <RadioGroup
+            android:id="@+id/skillLevel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/beginner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Good"/>
+
+            <RadioButton
+                android:id="@+id/advance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="HELL YEA!"/>
+        </RadioGroup>
+
+    </LinearLayout>
+
     <Button
-        android:id="@+id/signupButton"
+        android:id="@+id/signUpButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Sign Up" />
