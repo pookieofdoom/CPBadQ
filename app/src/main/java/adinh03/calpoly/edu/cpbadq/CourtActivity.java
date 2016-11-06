@@ -2,6 +2,7 @@ package adinh03.calpoly.edu.cpbadq;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -17,6 +18,7 @@ public class CourtActivity extends AppCompatActivity
    private RecyclerView mRecylerView;
    private MyAdapter adapter;
    private WaitingQueue mQueue;
+   private FloatingActionButton mFAB;
 
    @Override
    protected void onCreate(@Nullable Bundle savedInstanceState)
@@ -25,6 +27,7 @@ public class CourtActivity extends AppCompatActivity
       setContentView(R.layout.activity_court);
       mOnCourt = (TextView) findViewById(R.id.onCourtList);
       mRecylerView = (RecyclerView) findViewById(R.id.waitingList);
+      mFAB = (FloatingActionButton) findViewById(R.id.addButton);
       mRecylerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
       adapter = new MyAdapter(mQueue);
 
