@@ -23,13 +23,13 @@
         android:inputType="textPassword"/>
 
     <Button
-        android:id="@+id/loginbutton"
+        android:id="@+id/loginButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Login" />
 
     <Button
-        android:id="@+id/signupbutton"
+        android:id="@+id/signupButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Sign Up" />
